@@ -12,7 +12,7 @@ let essentialsRouter = require('./routes/essentials.js')
 
 var app = express();
 
-app.use(cors());
+app.use(corsMiddleware());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
