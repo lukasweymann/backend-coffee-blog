@@ -8,7 +8,7 @@ router.get('/:id/:info', function (req, res, next) {
 
     const idAsNumber = parseInt(id, 10);
 
-    const foundEssential = essential.find((singleEssential) => {
+    const foundEssential = essentials.find((singleEssential) => {
         return singleEssential.id === idAsNumber;
     });
 
@@ -20,7 +20,7 @@ router.get('/:id', function (req, res, next) {
 
     const idAsNumber = parseInt(id, 10);
 
-    const foundEssential = essential.find((singleEssential) => {
+    const foundEssential = essentials.find((singleEssential) => {
         return singleEssential.id === idAsNumber;
     });
 

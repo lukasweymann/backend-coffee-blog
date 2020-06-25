@@ -8,7 +8,8 @@ const corsMiddleware = require('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-let essentialsRouter = require('./routes/essentials.js')
+const essentialsRouter = require('./routes/essentials');
+const varietiesRouter = require('./routes/varieties');
 
 var app = express();
 
@@ -27,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/essentials', essentialsRouter);
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/varieties', varietiesRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
