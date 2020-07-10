@@ -3,16 +3,16 @@ const { pool } = require('./db-connector');
 const getAllPosts = () => {
     return (
         pool.query(`
-            SELECT id, image, title, text, author, timestamp FROM posts ORDER BY timestamp;
+            SELECT id, image_url, title, content, author, timestamp FROM posts ORDER BY timestamp;
         `)
     )
 };
 
-const createPost = ({ title, text, author }) => {
+const createPost = ({ image_url, title, content, author }) => {
     return (
         pool.query(
-            'INSERT INTO posts(title, text, author, timestamp) VALUES($1, $2, $3, $4) RETURNING *',
-            [title, text, author, new Date()]
+            'INSERT INTO posts(image_url, title, content, author, timestamp) VALUES($1, $2, $3, $4, $5) RETURNING *',
+            [image_url, title, content, author, new Date()]
         )
     )
 };
@@ -33,13 +33,13 @@ const deletePostById = (id) => {
     )
 };
 
-const updatePostById = (id, { title, text, author } = {}) => {
-    if (title || text || author) {
+const updatePostById = (id, { image_url, title, content, author } = {}) => {
+    if (title || content || author) {
         return pool.query(`
             UPDATE posts
-            SET title=$1, text=$2, author=$3
-            WHERE id=$4;
-        `, [title, text, author, id])
+            SET image_url=$1, title=$2, content=$3, author=$4
+            WHERE id=$5;
+        `, [image_url, title, content, author, id])
     }
 };
 

@@ -60,10 +60,10 @@ const deleteSinglePost = async (req, res) => {
 }
 
 const createSinglePost = async (req, res) => {
-    const { title, text, author } = req.body;
+    const { image_url, title, content, author } = req.body;
 
     try {
-        const post = await postModel.createPost({ title, text, author });
+        const post = await postModel.createPost({ image_url, title, content, author });
 
         if (post.rows.length) {
             return res.send(post.rows[0]);
