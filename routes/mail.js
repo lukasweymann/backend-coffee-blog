@@ -1,6 +1,14 @@
 require('dotenv').config()
 const express = require("express");
 const router = express.Router();
+let bodyParser = require('body-parser');
+
+let app = express();
+
+app.use(express.static('src'));
+
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 const nodeMailer = require("nodemailer");
 
@@ -18,10 +26,10 @@ router.post("/", (req, res, next) => {
   const mailInfo = {
     from: process.env.EMAIL,
     to: process.env.EMAIL,
-    subject: req.body.subject,
-    text: req.body.content,
-    who: req.body.email,
-    name: req.body.name,
+    subject: req.body.emailToSubmit.subject,
+    text: req.body.emailToSubmit.content,
+    who: req.body.emailToSubmit.email,
+    name: req.body.emailToSubmit.name,
   };
 
   console.log(mailInfo);
